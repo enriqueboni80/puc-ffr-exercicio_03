@@ -24,9 +24,10 @@ export const MoviesList = () => {
         {movies.data.results.map(movie => {
           return (
             <article className="filme">
-              <strong>{movie.title}</strong>
               <img src={`${moviesLocate}/${movie.poster_path}`} alt="capa" />
-              <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+              <div className="link">
+                <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+              </div>
             </article>
           )
         })}
