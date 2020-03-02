@@ -3,11 +3,12 @@ import MoviesServices from "../services/MoviesService"
 import './movie-details.css'
 
 
-export const MovieDetail = (props) => {
+const MovieDetail = (props) => {
 
-    const [movieID, setMovieID] = useState(props.match.params.movieID)
+    const movieID = props.match.params.movieID
+    const moviesURL = 'https://image.tmdb.org/t/p/w500/'
     const [movie, setMovie] = useState({ data: {} })
-    const [moviesLocate, setMoviesLocate] = useState('https://image.tmdb.org/t/p/w500/')
+    
 
     const requestMovie = async () => {
         const MovieResult = await MoviesServices.getByMovieId(movieID)
@@ -25,7 +26,7 @@ export const MovieDetail = (props) => {
                 <div className="title">
                     {movie.data.title}
                 </div>
-                <img src={`${moviesLocate}/${movie.data.backdrop_path}`} alt="capa" />
+                <img src={`${moviesURL}/${movie.data.backdrop_path}`} alt="capa" />
                 <div className="info">
                     <div className="overview">
                         {movie.data.overview}
@@ -41,3 +42,5 @@ export const MovieDetail = (props) => {
         </div>
     )
 }
+
+export default MovieDetail;
