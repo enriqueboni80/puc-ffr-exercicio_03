@@ -4,12 +4,14 @@ import MoviesServices from "../services/MoviesService"
 import { Link } from "react-router-dom"
 import './movie-list.css'
 import { IoIosStarOutline, IoIosStar } from 'react-icons/io'
+import { useSelector } from 'react-redux'
 
 
 const MoviesList = () => {
   const dispatch = useDispatch();
   const [movies, setMovies] = useState({ data: { results: [] } })
   const moviesLocate = 'https://image.tmdb.org/t/p/w500/'
+  const favorites = useSelector(state => state.favorites)
 
   const requestMovies = async () => {
     const MoviesResult = await MoviesServices.getPopularMovies()
@@ -20,31 +22,31 @@ const MoviesList = () => {
     requestMovies();
   }, [])
 
-  
-  const toogleFavorito = (contador, ligado=false) => {
-      if(ligado) {
-        document.getElementsByClassName('add-favorite')[contador].style.display = "block";
-        document.getElementsByClassName('remove-favorite')[contador].style.display = "none";
-      }else{
-        document.getElementsByClassName('add-favorite')[contador].style.display = "none";
-        document.getElementsByClassName('remove-favorite')[contador].style.display = "block";
-      }
-  }
-  
-  
-  const adcionarFavorito = (movie, contador, e) => {
+  const adcionarFavorito = (movie, e) => {
     e.preventDefault()
-    toogleFavorito(contador)
     dispatch({
       type: 'ADD_FAVORITES',
       movie
     })
   }
 
-  const removerFavorito = (movie, contador, e) => {
+  const removerFavorito = (movie, e) => {
     e.preventDefault()
-    toogleFavorito(contador, true)
     alert('Apagar Favorito')
+  }
+
+  const checarFavorito = (movieID) => {
+    var exist = false
+    {
+      favorites.map((favorite) => {
+        if (favorite.id === movieID) {
+          exist = true
+        } else {
+          exist = false
+        }
+      })
+    }
+    return exist
   }
 
   return (
@@ -56,8 +58,10 @@ const MoviesList = () => {
               <img src={`${moviesLocate}/${movie.poster_path}`} alt="capa" />
               <div className="link">
                 <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
-                  <a href="/" class="add-favorite" onClick={(e) => adcionarFavorito(movie, contador, e)}> <IoIosStarOutline size={35} /> </a>
-                  <a href="/" style={{display: "none"}} class="remove-favorite" onClick={(e) => removerFavorito(movie, contador, e)}> <IoIosStar size={35} /> </a>
+                {checarFavorito(movie.id)
+                  ? (<div>(<a href="/" class="add-favorite" onClick={(e) => removerFavorito(movie, e)}><IoIosStar size={35} /></a>)</div>)
+                  : (<a href="/" class="add-favorite" onClick={(e) => adcionarFavorito(movie, e)}><IoIosStarOutline size={35} /></a>)}
+
               </div>
             </article>
           )
