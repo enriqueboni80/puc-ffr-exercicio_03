@@ -39,10 +39,9 @@ const MoviesList = () => {
     var exist = false
     {
       favorites.map((favorite) => {
-        if (favorite.id === movieID) {
+        console.log(`${favorite.id} ---- ${movieID}`)
+        if (movieID === favorite.id) {
           exist = true
-        } else {
-          exist = false
         }
       })
     }
@@ -58,9 +57,13 @@ const MoviesList = () => {
               <img src={`${moviesLocate}/${movie.poster_path}`} alt="capa" />
               <div className="link">
                 <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
-                {checarFavorito(movie.id)
-                  ? (<div>(<a href="/" class="add-favorite" onClick={(e) => removerFavorito(movie, e)}><IoIosStar size={35} /></a>)</div>)
-                  : (<a href="/" class="add-favorite" onClick={(e) => adcionarFavorito(movie, e)}><IoIosStarOutline size={35} /></a>)}
+                <div>
+                  {
+                    checarFavorito(movie.id)
+                      ? (<a href="/" onClick={(e) => removerFavorito(movie, e)}><IoIosStar size={35} /></a>)
+                      : (<a href="/" onClick={(e) => adcionarFavorito(movie, e)}><IoIosStarOutline size={35} /></a>)
+                  }
+                </div>
 
               </div>
             </article>
