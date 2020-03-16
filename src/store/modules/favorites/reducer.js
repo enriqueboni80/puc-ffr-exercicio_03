@@ -10,10 +10,13 @@ const favorites = (state = [], action) => {
             if (!ehRepetido) {
                 return [...state, action.movie]
             }
+            break
+        case 'DEL_FAVORITES':
+            return state.filter((movie) => movie.id !== action.movie.id)
+            break
         default:
             return state
     }
 }
-
 
 export default favorites

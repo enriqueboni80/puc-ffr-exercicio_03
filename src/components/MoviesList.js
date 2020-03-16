@@ -32,14 +32,16 @@ const MoviesList = () => {
 
   const removerFavorito = (movie, e) => {
     e.preventDefault()
-    alert('Apagar Favorito')
+    dispatch({
+      type: 'DEL_FAVORITES',
+      movie
+    })
   }
 
   const checarFavorito = (movieID) => {
     var exist = false
     {
       favorites.map((favorite) => {
-        console.log(`${favorite.id} ---- ${movieID}`)
         if (movieID === favorite.id) {
           exist = true
         }
