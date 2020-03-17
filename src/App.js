@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import MoviesList from "./components/MoviesList";
+import MoviesList from "./components/MoviesListContainer";
 import MovieDetail from "./components/MovieDetails"
 import MoviesFavorites from './components/MoviesFavorites'
 import Header from './components/Header'
