@@ -5,7 +5,6 @@ import './movie-list.css'
 import { useSelector } from 'react-redux'
 import MoviesList from './MovieList'
 
-
 const MoviesListContainer = () => {
   const dispatch = useDispatch();
   const [movies, setMovies] = useState({ data: { results: [] } })
