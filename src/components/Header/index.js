@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <header>
             <div class="head">
-                você tem: {qtdFavoritos} filmes favoritos - <Link to="/favorites">Clique aqui</Link>
+                <Link to="/favorites">Você tem: {qtdFavoritos} filmes favoritos - veja</Link>
             </div>
         </header>
     )

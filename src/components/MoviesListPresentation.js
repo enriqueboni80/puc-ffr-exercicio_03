@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { IoIosStarOutline, IoIosStar } from 'react-icons/io'
 
 
-const MovieList = (props) => {
+const MoviesListPresentation = (props) => {
     return (
         <div className="container">
             <div className="lista-filmes">
@@ -29,4 +29,4 @@ const MovieList = (props) => {
     )
 }
 
-export default MovieList
+export default MoviesListPresentation

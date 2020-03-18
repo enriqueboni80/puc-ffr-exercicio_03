@@ -1,27 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import MoviesServices from "../services/MoviesService"
 import './movie-details.css'
 
+const MovieDetailPresentation = (props) => {
 
-const MovieDetail = (props) => {
-
-    const movieID = props.match.params.movieID
     const moviesURL = 'https://image.tmdb.org/t/p/w500/'
-    const [movie, setMovie] = useState({ data: {} })
-    
-
-    const requestMovie = async () => {
-        const MovieResult = await MoviesServices.getByMovieId(movieID)
-        setMovie(MovieResult)
-    }
-
-    useEffect(() => {
-        requestMovie();
-    }, [])
+    const movie = props.movie
 
     return (
         <div className="container-movie">
-            {console.log(movie)}
             <div className="filme">
                 <div className="title">
                     {movie.data.title}
@@ -43,4 +29,4 @@ const MovieDetail = (props) => {
     )
 }
 
-export default MovieDetail;
+export default MovieDetailPresentation;

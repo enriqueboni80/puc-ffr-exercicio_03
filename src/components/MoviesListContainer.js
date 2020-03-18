@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import MoviesServices from "../services/MoviesService"
 import './movie-list.css'
 import { useSelector } from 'react-redux'
-import MoviesList from './MovieList'
+import MoviesListPresentation from './MoviesListPresentation'
 
 const MoviesListContainer = () => {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ const MoviesListContainer = () => {
   }
 
   return (
-    <MoviesList
+    <MoviesListPresentation
       movies={movies.data.results}
       moviesLocate={moviesLocate}
       checarFavorito={checarFavorito}
